@@ -26,6 +26,12 @@ describe('minimitter', function() {
     expect(emitter.listeners['test']).toEqual([]);
   });
 
+  it('should remove all listeners with .removeAllListeners', function() {
+    emitter.on('test', self.func);
+    emitter.removeAllListeners('test');
+    expect(emitter.listeners['test']).toBeUndefined();
+  });
+
   it('should trigger a callback after emitting an event with .emit', function() {
     emitter.on('test', self.func);
     emitter.emit('test');
@@ -37,4 +43,15 @@ describe('minimitter', function() {
     emitter.emit('test', 'arg1', 'arg2');
     expect(self.func).toHaveBeenCalledWith('arg1', 'arg2');
   });
+
+  it('should extend existing object with .extend', function() {
+    function Test() {
+      Minimitter.extend(this);
+    }
+    var test = new Test();
+    Array([test.emit, test.on, test.once, test.off, test.removeListener, test.removeAllListeners])
+      .forEach(function(prop) {
+        expect(prop).toBeDefined()
+      })
+  })
 })

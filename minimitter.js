@@ -16,7 +16,7 @@ Minimitter.prototype.once = function(name, callback) {
   return this.on(name, once);
 };
 
-Minimitter.prototype.removeListener = function(name, callback) {
+Minimitter.prototype.off = function(name, callback) {
   if (!this.listeners[name]) return;
   var indexOfCallback = this.listeners[name].indexOf(callback);
   if (indexOfCallback > -1) {
@@ -24,7 +24,7 @@ Minimitter.prototype.removeListener = function(name, callback) {
   }
   return this;
 };
-Minimitter.prototype.off = Minimitter.prototype.removeListener;
+Minimitter.prototype.removeListener = Minimitter.prototype.off;
 
 Minimitter.prototype.removeAllListeners = function(name) {
   this.listeners[name] = undefined;
@@ -41,12 +41,18 @@ Minimitter.prototype.emit = function(name) {
 };
 
 Minimitter.extend = function(obj) {
-  var emitter = new Minimitter();
-  obj.on = emitter.on.bind(emitter);
-  obj.once = emitter.once.bind(emitter);
-  obj.off = emitter.off.bind(emitter);
-  obj.removeListener = emitter.removeListener.bind(emitter);
-  obj.removeAllListeners = emitter.removeAllListeners.bind(emitter);
+  if (typeof obj === "object" && obj !== null) {
+    var emitter = new Minimitter();
+    Object.keys(Minimitter.prototype).forEach(function(name) {
+      Object.defineProperty(obj, name, {
+        get: function() {
+          return emitter[name].bind(emitter);
+        }
+      });
+    });
+  } else {
+    throw Error("Object to extend shouldn't be null.");
+  }
 };
 
 module.exports = Minimitter;
