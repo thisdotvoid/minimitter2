@@ -9,7 +9,7 @@ A mini event emitter.
 ## Usage
 
 ```js
-var Minimitter = require('minimitter2');
+var Minimitter = require('minimitter2')
 var emitter = new Minimitter()
 ```
 
