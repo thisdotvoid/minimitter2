@@ -1,6 +1,6 @@
-var Minimitter = function Minimitter() {
+function Minimitter() {
   this.listeners = {};
-};
+}
 
 Minimitter.prototype.on = function(name, callback) {
   this.listeners[name] = this.listeners[name] || [];
@@ -38,6 +38,15 @@ Minimitter.prototype.emit = function(name) {
     callback.apply(this, args);
   });
   return true;
+};
+
+Minimitter.extend = function(obj) {
+  var emitter = new Minimitter();
+  obj.on = emitter.on.bind(emitter);
+  obj.once = emitter.once.bind(emitter);
+  obj.off = emitter.off.bind(emitter);
+  obj.removeListener = emitter.removeListener.bind(emitter);
+  obj.removeAllListeners = emitter.removeAllListeners.bind(emitter);
 };
 
 module.exports = Minimitter;
