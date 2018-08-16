@@ -15,13 +15,18 @@ Minimitter.prototype.once = function(name, callback) {
   this.on(name, once);
 };
 
-Minimitter.prototype.off = function(name, callback) {
+Minimitter.prototype.removeListener = function(name, callback) {
   if (!this.listeners[name]) return;
   var indexOfCallback = this.listeners[name].indexOf(callback);
   if (indexOfCallback > -1) {
     this.listeners[name].splice(indexOfCallback, 1);
   }
 };
+Minimitter.prototype.off = Minimitter.prototype.removeListener
+
+Minimitter.prototype.removeAllListeners = function(name) {
+  this.listeners[name] = undefined
+}
 
 Minimitter.prototype.emit = function(name) {
   if (!this.listeners[name]) return;
