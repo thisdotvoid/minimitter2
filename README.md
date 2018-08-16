@@ -30,14 +30,14 @@ interface Minimitter {
 const Minimitter = require("minimitter2")
 
 class Example {
-	constructor() {
-    	Minimitter.extend(this)
+    constructor() {
+        Minimitter.extend(this)
     }
 }
 
 const x = new Example()
 x.on("event", () => {
-	//
+    //
 })
 x.emit("event")
 ```
