@@ -1,6 +1,6 @@
 {
   "name": "minimitter2",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "A mini event emitter.",
   "main": "minimitter.js",
   "keywords": [
