@@ -15,13 +15,11 @@ Minimitter.prototype.off = function(name, callback) {
   }
 };
 
-Minimitter.prototype.emit = function(name, data) {
+Minimitter.prototype.emit = function(name) {
+  var args = Array.prototype.slice.call(arguments, 1);
+
   this.listeners[name].forEach(function(callback) {
-    try {
-      callback(data);
-    } catch(err) {
-      console.error('A callback has failed.');
-    }
+    callback.apply(this, args);
   });
 };
 
