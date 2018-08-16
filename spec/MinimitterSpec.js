@@ -1,4 +1,4 @@
-require('../minimitter');
+var Minimitter = require('../minimitter');
 
 describe('minimitter', function() {
   var emitter;
@@ -32,15 +32,9 @@ describe('minimitter', function() {
     expect(self.func).toHaveBeenCalled();
   });
 
-  it('should pass the data argument to the callback after emitting an event with .emit', function() {
+  it('should pass all arguments to the callback after emitting an event with .emit', function() {
     emitter.on('test', self.func);
-    emitter.emit('test', 'test-data');
-    expect(self.func).toHaveBeenCalledWith('test-data');
-  });
-
-  it('catch exceptions in callbacks and print an error message', function() {
-    emitter.on('test', self.fail);
-    emitter.emit('test');
-    expect(console.error).toHaveBeenCalled();
+    emitter.emit('test', 'arg1', 'arg2');
+    expect(self.func).toHaveBeenCalledWith('arg1', 'arg2');
   });
 })
