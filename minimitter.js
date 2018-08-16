@@ -10,7 +10,7 @@ Minimitter.prototype.on = function(name, callback) {
 Minimitter.prototype.off = function(name, callback) {
   this.listeners[name] = this.listeners[name] || [];
   var indexOfCallback = this.listeners[name].indexOf(callback);
-  if(~indexOfCallback) {
+  if (indexOfCallback > -1) {
     this.listeners[name].splice(indexOfCallback, 1);
   }
 };
