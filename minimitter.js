@@ -1,4 +1,4 @@
-Minimitter = function Minimitter() {
+var Minimitter = function Minimitter() {
   this.listeners = {};
 };
 
