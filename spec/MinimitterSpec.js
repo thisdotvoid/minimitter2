@@ -49,9 +49,9 @@ describe('minimitter', function() {
       Minimitter.extend(this);
     }
     var test = new Test();
-    Array([test.emit, test.on, test.once, test.off, test.removeListener, test.removeAllListeners])
+    Object.keys(Minimitter.prototype)
       .forEach(function(prop) {
-        expect(prop).toBeDefined()
-      })
+        expect(test[prop]).toBeDefined();
+      });
   })
 })
