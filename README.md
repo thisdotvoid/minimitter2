@@ -1,15 +1,15 @@
-# Minimitter
+# Minimitter2
 
 A mini event emitter.
 
 ## Installation
 
-`npm install minimitter`
+`npm install minimitter2`
 
 ## Usage
 
 ```
-var Minimitter = require('minimitter');
+var Minimitter = require('minimitter2');
 var emitter = new Minimitter()
 ```
 

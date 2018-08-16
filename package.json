@@ -1,6 +1,6 @@
 {
-  "name": "minimitter",
-  "version": "1.0.3",
+  "name": "minimitter2",
+  "version": "2.0.0",
   "description": "A mini event emitter.",
   "main": "minimitter.js",
   "keywords": [
@@ -11,7 +11,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:lucygilbert/minimitter.git"
+    "url": "git@github.com:thisdotvoid/minimitter.git"
   },
   "author": "Lucy Gilbert",
   "license": "MIT",
